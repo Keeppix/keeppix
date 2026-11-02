@@ -5,5 +5,9 @@ type LayoutProps = {
 };
 
 export default function Layout({ children }: LayoutProps) {
-  return <div className="bg-blue-950 min-h-screen">{children}</div>;
+  return (
+    <div className="overflow-x-hidden min-dvh-screen flex flex-col">
+      {children}
+    </div>
+  );
 }

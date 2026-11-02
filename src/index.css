@@ -1,10 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 @import "tailwindcss";
 
 @theme {
-  --font-family-sans: "Inter", sans-serif;
+  --font-montserrat: "Montserrat", sans-serif;
+
+  /* BREAKPOINTS */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+  /* COLORS */
 }
 
 @layer base {
+  html {
+    font-family: var(--font-montserrat);
+  }
 }
 
 @layer components {

@@ -1,12 +1,14 @@
 import Layout from "./components/Layout";
-import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
+import Menu from "./components/Menu";
 import AppRoutes from "./routes/AppRoutes";
 
 function App() {
   return (
     <Layout>
       {/* Navigation */}
-      <Navbar />
+      <Sidebar />
+      <Menu />
 
       {/* Routes */}
       <AppRoutes />
