@@ -1,14 +1,13 @@
 import { useAnimate } from "motion/react";
 import { useState } from "react";
+import { Link } from "react-router";
 
 export default function Menu() {
   const [scope, animate] = useAnimate();
   const [openMenu, setOpenMenu] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isSignedIn, setIsSignedIn] = useState(false);
 
-  const toggleAnimation = () => {
-    const open = !openMenu;
+  const setMenu = (open: boolean) => {
     setOpenMenu(open);
 
     const options = { duration: 0.3, ease: "easeInOut" } as const;
@@ -36,6 +35,8 @@ export default function Menu() {
     );
   };
 
+  const closeMenu = () => setMenu(false);
+
   return (
     <div
       ref={scope}
@@ -44,7 +45,7 @@ export default function Menu() {
       <div className="logo">Keepix</div>
 
       <button
-        onClick={toggleAnimation}
+        onClick={() => setMenu(!openMenu)}
         aria-label={openMenu ? "Close menu" : "Open menu"}
         aria-expanded={openMenu}
         className="menu-icon relative z-50 flex gap-0.5 flex-col p-2 cursor-pointer"
@@ -58,12 +59,20 @@ export default function Menu() {
         className="menu fixed inset-0 z-40 bg-black flex flex-col items-center justify-center gap-4 text-white text-2xl"
         style={{ transform: "translateX(100%)" }}
       >
-        <a href="/">Home</a>
-        <a href="/gallery">Gallery</a>
+        <Link to="/" onClick={() => closeMenu()}>
+          Home
+        </Link>
+        <Link to="/gallery" onClick={() => closeMenu()}>
+          Gallery
+        </Link>
         {isSignedIn ? (
-          <a href="/account">My Account</a>
+          <Link to="/account" onClick={() => closeMenu()}>
+            My Account
+          </Link>
         ) : (
-          <a href="/login">Login</a>
+          <Link to="/login" onClick={() => setIsSignedIn(true)}>
+            Login
+          </Link>
         )}
       </div>
     </div>
