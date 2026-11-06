@@ -1,6 +1,6 @@
 import Layout from "./components/Layout";
 import Sidebar from "./components/Sidebar";
-import Menu from "./components/Menu";
+import NavBar from "./components/NavBar";
 import AppRoutes from "./routes/AppRoutes";
 
 function App() {
@@ -8,10 +8,12 @@ function App() {
     <Layout>
       {/* Navigation */}
       <Sidebar />
-      <Menu />
+      <NavBar />
 
       {/* Routes */}
-      <AppRoutes />
+      <main className="flex-1 pt-(--navbar-h)">
+        <AppRoutes />
+      </main>
     </Layout>
   );
 }

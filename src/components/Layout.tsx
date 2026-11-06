@@ -6,8 +6,6 @@ type LayoutProps = {
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <div className="overflow-x-hidden min-dvh-screen flex flex-col">
-      {children}
-    </div>
+    <div className="overflow-x-hidden min-h-dvh flex flex-col">{children}</div>
   );
 }

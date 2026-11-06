@@ -39,7 +39,7 @@ export default function Menu() {
   return (
     <div
       ref={scope}
-      className="lg:hidden relative h-15 w-full border-b px-2.5 flex items-center justify-between"
+      className="lg:hidden fixed top-0 bg-white z-100 h-(--navbar-h) w-full border-b px-2.5 flex items-center justify-between"
     >
       <div className="logo">Keepix</div>
 
@@ -58,9 +58,13 @@ export default function Menu() {
         className="menu fixed inset-0 z-40 bg-black flex flex-col items-center justify-center gap-4 text-white text-2xl"
         style={{ transform: "translateX(100%)" }}
       >
-        <a href="#">Home</a>
-        <a href="#">Gallery</a>
-        {isSignedIn ? <a href="#">My Account</a> : <a href="#">Login</a>}
+        <a href="/">Home</a>
+        <a href="/gallery">Gallery</a>
+        {isSignedIn ? (
+          <a href="/account">My Account</a>
+        ) : (
+          <a href="/login">Login</a>
+        )}
       </div>
     </div>
   );
