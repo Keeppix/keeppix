@@ -8,8 +8,9 @@ export default function Tabs({ tabs }: TabProps) {
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
   const ActiveTabBorderClass =
-    "border-b-2 border-purple-800 text-purple-800 font-bold";
-  const InactiveTabBorderClass = "text-black hover:text-gray-700";
+    "border-b-2 border-black text-black font-bold dark:border-white dark:text-white";
+  const InactiveTabBorderClass =
+    "text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white";
 
   return (
     <div className="tabs px-4 py-2">

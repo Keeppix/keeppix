@@ -5,34 +5,23 @@ import { Link } from "react-router";
 export default function Menu() {
   const [scope, animate] = useAnimate();
   const [openMenu, setOpenMenu] = useState(false);
-  const [isSignedIn, setIsSignedIn] = useState(false);
+  const [isSignedIn] = useState(false);
 
   const setMenu = (open: boolean) => {
     setOpenMenu(open);
 
     const options = { duration: 0.3, ease: "easeInOut" } as const;
-    const lineColor = open ? "#ffffff" : "#000000";
 
+    // Colors are no longer animated: the lines use currentColor, so they
+    // follow the theme (light/dark) automatically in both states.
     animate(".menu", { x: open ? "0%" : "100%" }, options);
-    animate(
-      ".line-1",
-      { y: open ? 6 : 0, rotate: open ? 45 : 0, backgroundColor: lineColor },
-      options,
-    );
+    animate(".line-1", { y: open ? 6 : 0, rotate: open ? 45 : 0 }, options);
     animate(
       ".line-2",
-      {
-        opacity: open ? 0 : 1,
-        scaleX: open ? 0 : 1,
-        backgroundColor: lineColor,
-      },
+      { opacity: open ? 0 : 1, scaleX: open ? 0 : 1 },
       options,
     );
-    animate(
-      ".line-3",
-      { y: open ? -6 : 0, rotate: open ? -45 : 0, backgroundColor: lineColor },
-      options,
-    );
+    animate(".line-3", { y: open ? -6 : 0, rotate: open ? -45 : 0 }, options);
   };
 
   const closeMenu = () => setMenu(false);
@@ -40,9 +29,9 @@ export default function Menu() {
   return (
     <div
       ref={scope}
-      className="lg:hidden fixed top-0 bg-white z-100 h-(--navbar-h) w-full border-b px-2.5 flex items-center justify-between"
+      className="lg:hidden fixed top-0 z-100 h-(--navbar-h) w-full border-b border-gray-200 bg-white px-2.5 flex items-center justify-between text-black dark:border-gray-700 dark:bg-black dark:text-white"
     >
-      <div className="logo">Keepix</div>
+      <div className="logo relative z-50">Keepix</div>
 
       <button
         onClick={() => setMenu(!openMenu)}
@@ -50,13 +39,13 @@ export default function Menu() {
         aria-expanded={openMenu}
         className="menu-icon relative z-50 flex gap-0.5 flex-col p-2 cursor-pointer"
       >
-        <div className="line-1 w-5 h-1 bg-black rounded-sm"></div>
-        <div className="line-2 w-5 h-1 bg-black rounded-sm"></div>
-        <div className="line-3 w-5 h-1 bg-black rounded-sm"></div>
+        <div className="line-1 w-5 h-1 bg-current rounded-sm"></div>
+        <div className="line-2 w-5 h-1 bg-current rounded-sm"></div>
+        <div className="line-3 w-5 h-1 bg-current rounded-sm"></div>
       </button>
 
       <div
-        className="menu fixed inset-0 z-40 bg-black flex flex-col items-center justify-center gap-4 text-white text-2xl"
+        className="menu fixed inset-0 z-40 flex flex-col items-center justify-center gap-4 bg-white text-2xl text-black dark:bg-black dark:text-white"
         style={{ transform: "translateX(100%)" }}
       >
         <Link to="/" onClick={() => closeMenu()}>
@@ -65,12 +54,12 @@ export default function Menu() {
         <Link to="/gallery" onClick={() => closeMenu()}>
           Gallery
         </Link>
-        {isSignedIn ? (
+        {!isSignedIn ? (
           <Link to="/account" onClick={() => closeMenu()}>
             My Account
           </Link>
         ) : (
-          <Link to="/login" onClick={() => setIsSignedIn(true)}>
+          <Link to="/login" onClick={() => closeMenu()}>
             Login
           </Link>
         )}
