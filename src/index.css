@@ -22,6 +22,11 @@
   html {
     font-family: var(--font-montserrat);
   }
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
 }
 
 @layer components {

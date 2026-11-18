@@ -3,7 +3,7 @@ import Home from "../pages/Home";
 import Account from "../pages/Account";
 import Gallery from "../pages/Gallery";
 import Login from "../pages/Login";
-import Register from "../pages/Register";
+import Signup from "../pages/signup";
 import NotFound from "../pages/NotFound";
 
 export default function AppRoutes() {
@@ -13,7 +13,7 @@ export default function AppRoutes() {
       <Route path="/account" element={<Account />} />
       <Route path="/gallery" element={<Gallery />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
+      <Route path="/signup" element={<Signup />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
